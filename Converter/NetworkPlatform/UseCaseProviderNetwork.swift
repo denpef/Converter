@@ -16,8 +16,8 @@ public final class NetworkUseCaseProvider: UseCaseProvider {
         networkProvider = NetworkProvider()
     }
 
-    public func makeTickersUseCase() -> TickerUseCase {
-        return TickersUseCase(network: networkProvider.makeTickersUseCase())
+    public func makeRatesUseCase() -> RateUseCase {
+        return RatesUseCase(network: networkProvider.makeRatesUseCase())
     }
 
 }

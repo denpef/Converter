@@ -27,7 +27,7 @@ final class Network {
         self.pollingIsEnable = false
     }
 
-    func getItems(baseCurrency: String) -> Observable<[Ticker]> {
+    func getItems(baseCurrency: String) -> Observable<[Rate]> {
 
         let endpoint = APIManager.getRates(base: baseCurrency)
 
@@ -40,9 +40,9 @@ final class Network {
 
         return provider.rx.request(endpoint)
             .observeOn(scheduler)
-            .map(ResponseWrapper.self, atKeyPath: nil, using: decoder, failsOnEmptyData: true)
-            .flatMap({ wrapper -> Single<[Ticker]> in
-                return Single.just(wrapper.tickers)//wrapper.tickers)
+            .map(RatesWrapper.self, atKeyPath: nil, using: decoder, failsOnEmptyData: true)
+            .flatMap({ wrapper -> Single<[Rate]> in
+                return Single.just(wrapper.rates)//wrapper.rates)
             }).asObservable()
     }
 

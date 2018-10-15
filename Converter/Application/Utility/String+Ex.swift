@@ -11,7 +11,7 @@ import Foundation
 extension String {
     var isDigits: Bool {
         var charSet = CharacterSet.decimalDigits.inverted
-        charSet.remove(",")
+        charSet.remove(".")
         return !isEmpty && rangeOfCharacter(from: charSet) == nil
     }
 }

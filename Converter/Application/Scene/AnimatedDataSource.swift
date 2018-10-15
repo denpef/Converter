@@ -8,54 +8,56 @@
 
 import RxDataSources
 
-extension TickerItemViewModel: Equatable {
+extension RateCellViewModel: Equatable {
     
-    static func == (lhs: TickerItemViewModel, rhs: TickerItemViewModel) -> Bool {
-        let result = lhs.valueString.value == rhs.valueString.value
-            && lhs.ticker.title == rhs.ticker.title
+    static func == (lhs: RateCellViewModel, rhs: RateCellViewModel) -> Bool {
+        let result = (lhs.rate.isBase || lhs.total.value == rhs.total.value)
+            && lhs.rate.ratio == rhs.rate.ratio
+            && lhs.rate.title == rhs.rate.title
         return result
     }
     
 }
 
-extension TickerItemViewModel: IdentifiableType {
+extension RateCellViewModel: IdentifiableType {
     typealias Identity = String
 
     var identity: String {
-        return ticker.title
+        return rate.title
     }
 }
 
-struct TickersItemSection {
+struct RatesItemSection {
     var header: String?
 
-    var items: [TickerItemViewModel]
+    var items: [RateCellViewModel]
 
-    init(header: String? = nil, items: [TickerItemViewModel]) {
+    init(header: String? = nil, items: [RateCellViewModel]) {
         self.items = items
         self.header = header
     }
 }
 
-extension TickersItemSection: AnimatableSectionModelType {
+extension RatesItemSection: AnimatableSectionModelType {
 
-    typealias Item = TickerItemViewModel
+    typealias Item = RateCellViewModel
     typealias Identity = String
 
     var identity: String {
         return header ?? ""
     }
 
-    init(original: TickersItemSection, items: [Item]) {
+    init(original: RatesItemSection, items: [Item]) {
         self = original
         self.items = items
     }
 }
 
-extension TickersItemSection: Equatable {
+extension RatesItemSection: Equatable {
 
-    static func == (lhs: TickersItemSection, rhs: TickersItemSection) -> Bool {
-        return lhs.header == rhs.header && lhs.items == rhs.items
+    static func == (lhs: RatesItemSection, rhs: RatesItemSection) -> Bool {
+        return lhs.header == rhs.header
+            //&& lhs.items == rhs.items
     }
 
 }

@@ -11,10 +11,10 @@ import Moya
 
 final class NetworkProvider {
 
-    public func makeTickersUseCase() -> TickersNetwork {
+    public func makeRatesUseCase() -> RatesNetwork {
         let provider = MoyaProvider<APIManager>()
         let network = Network(provider: provider)
-        return TickersNetwork(network: network)
+        return RatesNetwork(network: network)
     }
 
 }

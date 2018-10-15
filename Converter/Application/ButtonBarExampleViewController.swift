@@ -1,6 +1,6 @@
 //
 //  ButtonBarExampleViewController.swift
-//  Ticker
+//  Rate
 //
 //  Created by Денис Ефимов on 04.10.2018.
 //  Copyright © 2018 Denis Efimov. All rights reserved.
@@ -72,16 +72,16 @@ class ButtonBarExampleViewController: ButtonBarPagerTabStripViewController {
     // MARK: - PagerTabStripDataSource
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
 
-        // Ticker View Controller Setup
+        // Rate View Controller Setup
         let networkUseCaseProvider: UseCaseProvider = NetworkUseCaseProvider()
 
         let networkNavigationController = UINavigationController()
 
-        let networkNavigator = DefaultTickersNavigator(
+        let networkNavigator = DefaultRatesNavigator(
             services: networkUseCaseProvider,
             navigationController: networkNavigationController)
 
-        let childOne = networkNavigator.configureTickersViewController()
+        let childOne = networkNavigator.configureRatesViewController()
         //let child_1 = EmptyViewController()
 
         // Second for example

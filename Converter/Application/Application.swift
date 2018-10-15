@@ -1,6 +1,6 @@
 //
 //  Application.swift
-//  Ticker
+//  Rate
 //
 //  Created by Денис Ефимов on 04.10.2018.
 //  Copyright © 2018 Denis Efimov. All rights reserved.
@@ -23,7 +23,7 @@ final class Application {
         //let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let networkNavigationController = UINavigationController()
 
-        let networkNavigator = DefaultTickersNavigator(
+        let networkNavigator = DefaultRatesNavigator(
             services: networkUseCaseProvider,
             navigationController: networkNavigationController)
 
@@ -38,7 +38,7 @@ final class Application {
         //window.rootViewController = tabBarController
         window.rootViewController = networkNavigationController
 
-        networkNavigator.toTickers()
+        networkNavigator.toRates()
 
     }
 }

@@ -10,6 +10,6 @@ import Foundation
 
 public protocol UseCaseProvider {
 
-    func makeTickersUseCase() -> TickerUseCase
+    func makeRatesUseCase() -> RateUseCase
 
 }
