@@ -153,7 +153,8 @@ final class RateTableViewCell: UITableViewCell {
             make.left.greaterThanOrEqualTo(fullNameLabel.snp.right).offset(showcase.generalOffset).priority(.high)
             make.centerY.equalToSuperview()
         }
-
+        amountField.setContentCompressionResistancePriority(UILayoutPriority.defaultLow, for: .horizontal)
+        
         underlinView.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(showcase.generalOffset)
             make.width.equalTo(amountField.snp.width)
@@ -161,6 +162,7 @@ final class RateTableViewCell: UITableViewCell {
             make.left.equalTo(amountField.snp.left)
             make.top.equalTo(amountField.snp.bottom).inset(-3)
         }
+        
     }
     
     func bindRx() {
