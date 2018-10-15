@@ -17,6 +17,7 @@ final class RatesViewModel: ViewModelType {
         let pollingStart: Observable<Void>
         let pollingStop: Observable<Void>
         let selection: Observable<RateCellViewModel?>
+        let baseAmt: BehaviorRelay<String?>
     }
 
     struct Output {
@@ -25,8 +26,6 @@ final class RatesViewModel: ViewModelType {
         let error: Driver<Error>
     }
 
-    let baseAmt = Variable<String?>("1.00")
-    
     private let disposeBag = DisposeBag()
     private let useCase: RateUseCase
     private var polling = PublishRelay<Bool>()
@@ -51,7 +50,9 @@ final class RatesViewModel: ViewModelType {
 
         let sheduler = ConcurrentDispatchQueueScheduler.init(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated))
         
-        let ratesViewModels = Observable.combineLatest(polling, input.selection)
+        // Combine base currency & timer for correct sync request
+        let ratesViewModels = Observable
+            .combineLatest(polling, input.selection)
             .flatMapLatest {isPolling, baseRate -> Observable<String> in
                 guard isPolling else { return .empty() }
                 var baseCurrency = ""
@@ -64,23 +65,30 @@ final class RatesViewModel: ViewModelType {
                         baseCurrency = baseObject.title
                     }
                 }
+                // Timer loop
                 return Observable<Int>
                     .interval(1, scheduler: sheduler)
                     .map { _ in baseCurrency }
             }.flatMapLatest { baseId -> Observable<[Rate]> in
+                // Request data
                 return self.useCase
                     .rates(baseCurrency: baseId)
                     .trackError(errorTracker)
             }.asDriver(onErrorJustReturn: [])
 
-        
         let realm = try! Realm()
         let query = realm.objects(Rate.self)
 
-        let items = Observable.combineLatest(Observable.collection(from: query), baseAmt.asObservable())
+        // Combine realm collection & base currency amount to calculate quotes
+        let items = Observable.combineLatest(Observable.collection(from: query), input.baseAmt.asObservable())
             .flatMapLatest {(arg) -> Observable<[RateCellViewModel]> in
                 let (results, amt) = arg
-                return Observable.just(results.toArray().map{ RateCellViewModel(rate: $0, baseAmt: amt) }.sorted {  (lth, rth) -> Bool in lth.rate.isBase })
+                return Observable.just(
+                    results
+                        .toArray()
+                        .map{ RateCellViewModel(rate: $0, baseAmt: amt) }
+                        .sorted {  (lth, rth) -> Bool in lth.rate.isBase })
+            // Create section
             }.flatMapLatest { viewModels -> Observable<[RatesItemSection]> in
                 let firstSection = RatesItemSection(items: viewModels)
                 return Observable.just([firstSection])

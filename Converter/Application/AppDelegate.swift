@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let window = UIWindow(frame: UIScreen.main.bounds)
 
+        // Create interface without IB
         window.rootViewController = ButtonBarExampleViewController()
         window.makeKeyAndVisible()
 

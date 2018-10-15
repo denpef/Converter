@@ -9,6 +9,10 @@
 import Foundation
 import Moya
 
+enum APIManager {
+    case getRates(base: String?)
+}
+
 final class NetworkProvider {
 
     public func makeRatesUseCase() -> RatesNetwork {
@@ -17,10 +21,6 @@ final class NetworkProvider {
         return RatesNetwork(network: network)
     }
 
-}
-
-enum APIManager {
-    case getRates(base: String?)
 }
 
 extension APIManager: TargetType {

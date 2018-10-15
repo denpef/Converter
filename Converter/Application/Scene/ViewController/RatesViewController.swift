@@ -24,28 +24,21 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
 
     var viewModel: RatesViewModel!
 
+    // XLPagerTabStrip
     private var itemInfo: IndicatorInfo = "Котировки"
 
     lazy var tableView: UITableView = {
+        
         let tableView = UITableView()
         tableView.estimatedRowHeight = 50
         tableView.rowHeight = UITableView.automaticDimension
+        
         self.view.addSubview(tableView)
         tableView.register(RateTableViewCell.self, forCellReuseIdentifier: "RateTableViewCell")
+        
         return tableView
+        
     }()
-
-//    private lazy var controlProperty: (Observable<String?>) -> Void = { [ratesView, disposeBag] property in
-//
-//        property
-//            .debounce(0.5, scheduler: ConcurrentMainScheduler.instance)
-//            .map { $0 ?? "" }
-//            .distinctUntilChanged()
-//            .filter { !$0.isEmpty }
-//            .bind(onNext: { self.actions.changeValue(rate, $0) })
-//            .disposed(by: disposeBag)
-//    }
-
     
     private lazy var errorBinding = Binder<Error>(self) { (vc, error) in
 
@@ -90,45 +83,9 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
             .disposed(by: disposeBag)
 
     }
-
-//    @objc func didChange(notification: NSNotification) {
-//        guard let textfield = notification.object as? UITextField else { return }
-//        //guard textfield != hiddenTextfield else { return }
-//
-//        var text = textfield.text
-//        if text == "" {
-//            text = nil
-//        }
-//
-//        self.viewModel?.set
-//    }
-    
-//    textField.rx.controlEvent([.editingDidBegin, .editingDidEnd])
-//    .asObservable()
-//    .subscribe(onNext: { _ in
-//    print("editing state changed")
-//    })
-//    .disposed(by: disposeBag)
-    
-    @objc func didChange(notification: NSNotification) {
-        guard let textfield = notification.object as? UITextField else { return }
-
-        var text = textfield.text
-        if text == "" {
-            text = nil
-        }
-
-        self.viewModel.baseAmt.value = text
-    }
     
     private func bindViewModel() {
         
-        NotificationCenter.default
-            .addObserver(
-                self,
-                selector: #selector(RatesViewController.didChange(notification:)),
-                name: UITextField.textDidChangeNotification, object: nil)
-
         assert(viewModel != nil)
 
         tableView.rx.didScroll
@@ -170,23 +127,16 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
 
         let selected = Observable<RateCellViewModel?>.merge(Observable.just(nil), modelSelected.asObservable())
 
+        let baseAmt = BehaviorRelay<String?>(value: "1")
+        
         let input = RatesViewModel.Input(
             pollingStart: Observable.merge(viewWillAppear, noteBecomeActive, willEnterForeground),
             pollingStop: Observable.merge(viewWillDisappear, WillResignActive, DidEnterBackground),
-            selection: selected)
+            selection: selected,
+            baseAmt: baseAmt)
 
         let output = viewModel.transform(input: input)
 
-        //Bind rates to UITableView
-//        output.rates.drive(tableView.rx.items(cellIdentifier: RateTableViewCell.reuseID, cellType: RateTableViewCell.self)) { tv, viewModel, cell in
-//            if viewModel.rate.quote?.highestBid != cell.viewModel?.rate.quote?.highestBid {
-//
-//                cell.bind(viewModel)
-//            }
-//            }.disposed(by: disposeBag)
-//
-//        NotificationCenter.default.addObserver(self, selector: #selector(RatesViewController.didChange(notification:)), name: UITextField.textDidChangeNotification, object: nil)
-        
         let dataSource = RxTableViewSectionedAnimatedDataSource<RatesItemSection>(
             animationConfiguration: AnimationConfiguration(
                 insertAnimation: .none,
@@ -194,67 +144,29 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
                 deleteAnimation: .none
             ),
             configureCell: {(_, tableView, indexPath, viewModel) -> UITableViewCell in
-                tableView.register(RateTableViewCell.self, forCellReuseIdentifier: RateTableViewCell.reuseID)
-                let cell = tableView.dequeueReusableCell(withIdentifier: RateTableViewCell.reuseID, for: indexPath) as! RateTableViewCell
+                let cellReuseIdentifier = String(describing: RateTableViewCell.self)
+                tableView.register(RateTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! RateTableViewCell
                 cell.viewModel = viewModel
-//                cell.amountField.rx
-//                    .controlEvent(.editingChanged)
-//                    .debounce(0.5, scheduler: MainScheduler.instance)
-//                    .flatMap { cell.amountField.rx.text }
-//                    //.debug("\(cell.viewModel?.rate.title)", trimOutput: false)
-//                    .bind(to:self.viewModel.baseAmt )
-                
+                cell.amountField.rx.text.changed.bind(to: baseAmt).disposed(by: cell.disposeBag)
                 return cell
             })
 
         output.rates.asObservable()
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-
-//        output.rates
-//            .drive(tableView.rx.items(dataSource: dataSource))
-//            .disposed(by: disposeBag)
         
         Observable.zip(
             tableView.rx.itemSelected,
             tableView.rx.modelSelected(RateCellViewModel.self)
             ).bind { [unowned self] indexPath, rateItemViewModel in
-                //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.7, execute: {
-                    //self.tableView.deselectRow(at: indexPath, animated: true)
                     self.scrollToTop()
                     self.changeBaseCurrency(to: rateItemViewModel.rate.title)
-                    //self.moveModel(rateItemViewModel, toTopOf: output.rates)
-                    //actions.select(rate)
                     (self.tableView.cellForRow(at: indexPath) as? RateTableViewCell).map { cell in
                         cell.amountField.isUserInteractionEnabled = true
                         cell.amountField.becomeFirstResponder()
-                        //cell.amountField.toggleColors()
                     }
-                //})
             }.disposed(by: disposeBag)
-        
-//        tableView.rx.modelSelected(RateItemViewModel.self)
-//            .asDriver().drive(onNext: { model in
-//                guard let strongSelf = self else { return }
-//                strongSelf.scrollToTop()
-//                guard
-//                    let index = output.rates.firstIndex(where: { $0.title == selectedRate.title }),
-//                    index != 0
-//                    else { return }
-//                rates.remove(at: index)
-//                rates.insert(selectedRate, at: 0)
-//                mainStore.dispatch(action: PresentableAction(viewState: .success(rates)))
-//
-//                (strongSelf.tableView.cellForRow(at: indexPath) as? RateTableViewCell).map { cell in
-//                    cell.amountField.isUserInteractionEnabled = true
-//                    cell.amountField.becomeFirstResponder()
-//                    //cell.amountField.toggleColors()
-//                }
-//            })
-
-//        output.selectedRate
-//            .drive()
-//            .disposed(by: disposeBag)
 
         output.error
             .drive(errorBinding)
@@ -294,30 +206,6 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
             debugPrint("changeBaseCurrency: \(error)")
         }
     }
-    
-//    private func moveModel(_ rateModel: RateCellViewModel, toTopOf collection: Driver<[RatesItemSection]>) {
-//        if let index = collection.value[0].items.index(where: { (model) -> Bool in
-//            model == rateModel
-//        }) {
-//            let newBase = collection.value[0].items.remove(at: index)
-//            collection.value[0].items.insert(newBase, at: 0)
-//        }
-//    }
-    
-//    private func configure(_ cell: RateTableViewCell, with rate: Rate) {
-//        cell.configure(with: rate)
-//
-////        cell.amountField.rx
-////            .controlEvent(.editingDidEnd)
-////            .bind { cell.amountField.toggleColors() }
-////            .disposed(by: disposeBag)
-//
-//        cell.amountField.rx
-//            .controlEvent(.editingChanged)
-//            .flatMap { cell.amountField.rx.text }
-//            .bind(to: { controlProperty(rate, $0) })
-//    }
-    
 }
 
 extension RatesViewController: UITableViewDelegate {

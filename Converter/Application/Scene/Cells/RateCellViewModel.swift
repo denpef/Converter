@@ -16,6 +16,7 @@ import RxDataSources
 class RateCellViewModel {
     
     private var disposeBag = DisposeBag()
+    
     var total: Variable<String?> = Variable<String?>(nil)
     var rate: Rate
     let realm: Realm

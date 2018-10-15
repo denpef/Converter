@@ -14,7 +14,6 @@ class RatesWrapper: Decodable {
     var base: String = ""
     var date = Date(timeIntervalSinceNow: 0)
 
-    //var rates = List<Rate>()
     var rates = [Rate]()
 
     enum CodingKeys: String, CodingKey {

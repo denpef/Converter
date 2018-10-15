@@ -19,9 +19,7 @@
 		DB10DA2A216D6D96003E779B /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380360216D5FD1004C2FF0 /* UseCaseProvider.swift */; };
 		DB10DA2F216D79E5003E779B /* AnimatedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB10DA2E216D79E5003E779B /* AnimatedDataSource.swift */; };
 		DB10DA31216E2C17003E779B /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB10DA30216E2C17003E779B /* String+Ex.swift */; };
-		DB10DA35216ED122003E779B /* AmountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB10DA34216ED122003E779B /* AmountTextField.swift */; };
 		DB3802CB216D5F32004C2FF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802CA216D5F32004C2FF0 /* AppDelegate.swift */; };
-		DB3802CD216D5F32004C2FF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802CC216D5F32004C2FF0 /* ViewController.swift */; };
 		DB3802D2216D5F35004C2FF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB3802D1216D5F35004C2FF0 /* Assets.xcassets */; };
 		DB3802D5216D5F35004C2FF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3802D3216D5F35004C2FF0 /* LaunchScreen.storyboard */; };
 		DB3802EB216D5F35004C2FF0 /* ConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802EA216D5F35004C2FF0 /* ConverterUITests.swift */; };
@@ -31,12 +29,9 @@
 		DB38030E216D5F79004C2FF0 /* RateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802FE216D5F78004C2FF0 /* RateTableViewCell.swift */; };
 		DB38030F216D5F79004C2FF0 /* RatesNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802FF216D5F78004C2FF0 /* RatesNavigator.swift */; };
 		DB380310216D5F79004C2FF0 /* RatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380300216D5F78004C2FF0 /* RatesViewController.swift */; };
-		DB380311216D5F79004C2FF0 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380301216D5F78004C2FF0 /* Application.swift */; };
 		DB380313216D5F79004C2FF0 /* ButtonBarExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380303216D5F78004C2FF0 /* ButtonBarExampleViewController.swift */; };
 		DB380314216D5F79004C2FF0 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380304216D5F78004C2FF0 /* ViewModelType.swift */; };
-		DB380315216D5F79004C2FF0 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380306216D5F79004C2FF0 /* Reusable.swift */; };
 		DB380316216D5F79004C2FF0 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380307216D5F79004C2FF0 /* ErrorTracker.swift */; };
-		DB380317216D5F79004C2FF0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380308216D5F79004C2FF0 /* ActivityIndicator.swift */; };
 		DB380318216D5F79004C2FF0 /* Observable+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380309216D5F79004C2FF0 /* Observable+Ex.swift */; };
 		DB51A02321745C7B00AB9624 /* RateViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51A02221745C7B00AB9624 /* RateViewModelSpec.swift */; };
 		DB51A02521745E5A00AB9624 /* RateUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51A02421745E5A00AB9624 /* RateUseCaseMock.swift */; };
@@ -86,10 +81,8 @@
 		DB10DA1F216D6927003E779B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB10DA2E216D79E5003E779B /* AnimatedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedDataSource.swift; sourceTree = "<group>"; };
 		DB10DA30216E2C17003E779B /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
-		DB10DA34216ED122003E779B /* AmountTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountTextField.swift; sourceTree = "<group>"; };
 		DB3802C7216D5F32004C2FF0 /* Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Converter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3802CA216D5F32004C2FF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DB3802CC216D5F32004C2FF0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DB3802D1216D5F35004C2FF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB3802D4216D5F35004C2FF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB3802D6216D5F35004C2FF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,12 +97,9 @@
 		DB3802FE216D5F78004C2FF0 /* RateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateTableViewCell.swift; sourceTree = "<group>"; };
 		DB3802FF216D5F78004C2FF0 /* RatesNavigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesNavigator.swift; sourceTree = "<group>"; };
 		DB380300216D5F78004C2FF0 /* RatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesViewController.swift; sourceTree = "<group>"; };
-		DB380301216D5F78004C2FF0 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		DB380303216D5F78004C2FF0 /* ButtonBarExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonBarExampleViewController.swift; sourceTree = "<group>"; };
 		DB380304216D5F78004C2FF0 /* ViewModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
-		DB380306216D5F79004C2FF0 /* Reusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		DB380307216D5F79004C2FF0 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
-		DB380308216D5F79004C2FF0 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		DB380309216D5F79004C2FF0 /* Observable+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Ex.swift"; sourceTree = "<group>"; };
 		DB38035F216D5FD1004C2FF0 /* RateUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateUseCase.swift; sourceTree = "<group>"; };
 		DB380360216D5FD1004C2FF0 /* UseCaseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
@@ -203,13 +193,11 @@
 			children = (
 				DB51A02E2174E2C600AB9624 /* main.swift */,
 				DB3802CA216D5F32004C2FF0 /* AppDelegate.swift */,
-				DB380301216D5F78004C2FF0 /* Application.swift */,
 				DB380303216D5F78004C2FF0 /* ButtonBarExampleViewController.swift */,
 				DB3802F8216D5F78004C2FF0 /* EmptyViewController.swift */,
 				DB3802F9216D5F78004C2FF0 /* Scene */,
 				DB380305216D5F79004C2FF0 /* Utility */,
 				DB380304216D5F78004C2FF0 /* ViewModelType.swift */,
-				DB3802CC216D5F32004C2FF0 /* ViewController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -293,11 +281,8 @@
 		DB380305216D5F79004C2FF0 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				DB380306216D5F79004C2FF0 /* Reusable.swift */,
 				DB10DA30216E2C17003E779B /* String+Ex.swift */,
 				DB380307216D5F79004C2FF0 /* ErrorTracker.swift */,
-				DB10DA34216ED122003E779B /* AmountTextField.swift */,
-				DB380308216D5F79004C2FF0 /* ActivityIndicator.swift */,
 				DB380309216D5F79004C2FF0 /* Observable+Ex.swift */,
 			);
 			path = Utility;
@@ -600,7 +585,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB380311216D5F79004C2FF0 /* Application.swift in Sources */,
 				DB10DA29216D6D96003E779B /* RateUseCase.swift in Sources */,
 				DB38030F216D5F79004C2FF0 /* RatesNavigator.swift in Sources */,
 				DB380316216D5F79004C2FF0 /* ErrorTracker.swift in Sources */,
@@ -608,8 +592,6 @@
 				DB10DA22216D6D72003E779B /* RatesUseCaseNetwork.swift in Sources */,
 				DB38030A216D5F79004C2FF0 /* EmptyViewController.swift in Sources */,
 				DB10DA21216D6D72003E779B /* NetworkProvider.swift in Sources */,
-				DB10DA35216ED122003E779B /* AmountTextField.swift in Sources */,
-				DB380315216D5F79004C2FF0 /* Reusable.swift in Sources */,
 				DB10DA23216D6D72003E779B /* RatesNetwork.swift in Sources */,
 				DB38030E216D5F79004C2FF0 /* RateTableViewCell.swift in Sources */,
 				DB10DA2A216D6D96003E779B /* UseCaseProvider.swift in Sources */,
@@ -617,9 +599,7 @@
 				DB10DA25216D6D72003E779B /* Network.swift in Sources */,
 				DB38030C216D5F79004C2FF0 /* RatesViewModel.swift in Sources */,
 				DB10DA28216D6D96003E779B /* RatesWrapper.swift in Sources */,
-				DB3802CD216D5F32004C2FF0 /* ViewController.swift in Sources */,
 				DB3802CB216D5F32004C2FF0 /* AppDelegate.swift in Sources */,
-				DB380317216D5F79004C2FF0 /* ActivityIndicator.swift in Sources */,
 				DB380318216D5F79004C2FF0 /* Observable+Ex.swift in Sources */,
 				DB38030D216D5F79004C2FF0 /* RateCellViewModel.swift in Sources */,
 				DB51A02F2174E2C600AB9624 /* main.swift in Sources */,

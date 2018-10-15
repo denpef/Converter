@@ -57,7 +57,6 @@ extension RatesItemSection: Equatable {
 
     static func == (lhs: RatesItemSection, rhs: RatesItemSection) -> Bool {
         return lhs.header == rhs.header
-            //&& lhs.items == rhs.items
     }
 
 }

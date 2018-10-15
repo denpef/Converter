@@ -1,6 +1,6 @@
 //
 //  ButtonBarExampleViewController.swift
-//  Rate
+//  Converter
 //
 //  Created by Денис Ефимов on 04.10.2018.
 //  Copyright © 2018 Denis Efimov. All rights reserved.
@@ -82,9 +82,8 @@ class ButtonBarExampleViewController: ButtonBarPagerTabStripViewController {
             navigationController: networkNavigationController)
 
         let childOne = networkNavigator.configureRatesViewController()
-        //let child_1 = EmptyViewController()
-
-        // Second for example
+        
+        // Second controller for example
         let childTwo = EmptyViewController()
 
         guard isReload else {
