@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6AF96ED71B8E15F3C3F29A0A /* Pods_ConverterApp_ConverterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACD07B165CFAD065C37342B /* Pods_ConverterApp_ConverterTests.framework */; };
 		DB10DA21216D6D72003E779B /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38036A216D6005004C2FF0 /* NetworkProvider.swift */; };
 		DB10DA22216D6D72003E779B /* RatesUseCaseNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38036E216D6005004C2FF0 /* RatesUseCaseNetwork.swift */; };
 		DB10DA23216D6D72003E779B /* RatesNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB38036B216D6005004C2FF0 /* RatesNetwork.swift */; };
@@ -23,7 +24,6 @@
 		DB3802CD216D5F32004C2FF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802CC216D5F32004C2FF0 /* ViewController.swift */; };
 		DB3802D2216D5F35004C2FF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB3802D1216D5F35004C2FF0 /* Assets.xcassets */; };
 		DB3802D5216D5F35004C2FF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3802D3216D5F35004C2FF0 /* LaunchScreen.storyboard */; };
-		DB3802E0216D5F35004C2FF0 /* ConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802DF216D5F35004C2FF0 /* ConverterTests.swift */; };
 		DB3802EB216D5F35004C2FF0 /* ConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802EA216D5F35004C2FF0 /* ConverterUITests.swift */; };
 		DB38030A216D5F79004C2FF0 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802F8216D5F78004C2FF0 /* EmptyViewController.swift */; };
 		DB38030C216D5F79004C2FF0 /* RatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3802FB216D5F78004C2FF0 /* RatesViewModel.swift */; };
@@ -38,6 +38,11 @@
 		DB380316216D5F79004C2FF0 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380307216D5F79004C2FF0 /* ErrorTracker.swift */; };
 		DB380317216D5F79004C2FF0 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380308216D5F79004C2FF0 /* ActivityIndicator.swift */; };
 		DB380318216D5F79004C2FF0 /* Observable+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB380309216D5F79004C2FF0 /* Observable+Ex.swift */; };
+		DB51A02321745C7B00AB9624 /* RateViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51A02221745C7B00AB9624 /* RateViewModelSpec.swift */; };
+		DB51A02521745E5A00AB9624 /* RateUseCaseMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51A02421745E5A00AB9624 /* RateUseCaseMock.swift */; };
+		DB51A02A2174803600AB9624 /* Response.json in Resources */ = {isa = PBXBuildFile; fileRef = DB51A0262174604200AB9624 /* Response.json */; };
+		DB51A02D2174E1D000AB9624 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51A02B2174E15100AB9624 /* TestingAppDelegate.swift */; };
+		DB51A02F2174E2C600AB9624 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51A02E2174E2C600AB9624 /* main.swift */; };
 		F889134C3CE1C171D5B20C90 /* Pods_ConverterApp_Converter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 131AE7A05D36B240A9F3F5D7 /* Pods_ConverterApp_Converter.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,7 +79,10 @@
 /* Begin PBXFileReference section */
 		131AE7A05D36B240A9F3F5D7 /* Pods_ConverterApp_Converter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConverterApp_Converter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		430831E431AECBAFF9CEF9A4 /* Pods-ConverterApp-Converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConverterApp-Converter.debug.xcconfig"; path = "Target Support Files/Pods-ConverterApp-Converter/Pods-ConverterApp-Converter.debug.xcconfig"; sourceTree = "<group>"; };
+		7F3BD5D005432EEE967AE233 /* Pods-ConverterApp-ConverterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConverterApp-ConverterTests.debug.xcconfig"; path = "Target Support Files/Pods-ConverterApp-ConverterTests/Pods-ConverterApp-ConverterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B5CB0DA7D37CB3289F623FE /* Pods-ConverterApp-ConverterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConverterApp-ConverterTests.release.xcconfig"; path = "Target Support Files/Pods-ConverterApp-ConverterTests/Pods-ConverterApp-ConverterTests.release.xcconfig"; sourceTree = "<group>"; };
 		941A1353B1FABFF2625733A1 /* Pods-ConverterApp-Converter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConverterApp-Converter.release.xcconfig"; path = "Target Support Files/Pods-ConverterApp-Converter/Pods-ConverterApp-Converter.release.xcconfig"; sourceTree = "<group>"; };
+		9ACD07B165CFAD065C37342B /* Pods_ConverterApp_ConverterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConverterApp_ConverterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB10DA1F216D6927003E779B /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB10DA2E216D79E5003E779B /* AnimatedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedDataSource.swift; sourceTree = "<group>"; };
 		DB10DA30216E2C17003E779B /* String+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
@@ -86,7 +94,6 @@
 		DB3802D4216D5F35004C2FF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB3802D6216D5F35004C2FF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3802DB216D5F35004C2FF0 /* ConverterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConverterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB3802DF216D5F35004C2FF0 /* ConverterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterTests.swift; sourceTree = "<group>"; };
 		DB3802E1216D5F35004C2FF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB3802E6216D5F35004C2FF0 /* ConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3802EA216D5F35004C2FF0 /* ConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterUITests.swift; sourceTree = "<group>"; };
@@ -113,6 +120,12 @@
 		DB38036C216D6005004C2FF0 /* UseCaseProviderNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseCaseProviderNetwork.swift; sourceTree = "<group>"; };
 		DB38036D216D6005004C2FF0 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		DB38036E216D6005004C2FF0 /* RatesUseCaseNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesUseCaseNetwork.swift; sourceTree = "<group>"; };
+		DB51A02121745C7A00AB9624 /* ConverterTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConverterTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		DB51A02221745C7B00AB9624 /* RateViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewModelSpec.swift; sourceTree = "<group>"; };
+		DB51A02421745E5A00AB9624 /* RateUseCaseMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateUseCaseMock.swift; sourceTree = "<group>"; };
+		DB51A0262174604200AB9624 /* Response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Response.json; sourceTree = "<group>"; };
+		DB51A02B2174E15100AB9624 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
+		DB51A02E2174E2C600AB9624 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF96ED71B8E15F3C3F29A0A /* Pods_ConverterApp_ConverterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +160,7 @@
 			children = (
 				DB10DA1F216D6927003E779B /* Alamofire.framework */,
 				131AE7A05D36B240A9F3F5D7 /* Pods_ConverterApp_Converter.framework */,
+				9ACD07B165CFAD065C37342B /* Pods_ConverterApp_ConverterTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -155,6 +170,8 @@
 			children = (
 				430831E431AECBAFF9CEF9A4 /* Pods-ConverterApp-Converter.debug.xcconfig */,
 				941A1353B1FABFF2625733A1 /* Pods-ConverterApp-Converter.release.xcconfig */,
+				7F3BD5D005432EEE967AE233 /* Pods-ConverterApp-ConverterTests.debug.xcconfig */,
+				8B5CB0DA7D37CB3289F623FE /* Pods-ConverterApp-ConverterTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -162,6 +179,7 @@
 		DB10DA2B216D7201003E779B /* NetworkPlatform */ = {
 			isa = PBXGroup;
 			children = (
+				DB51A0262174604200AB9624 /* Response.json */,
 				DB38036D216D6005004C2FF0 /* Network.swift */,
 				DB38036A216D6005004C2FF0 /* NetworkProvider.swift */,
 				DB38036B216D6005004C2FF0 /* RatesNetwork.swift */,
@@ -183,6 +201,7 @@
 		DB10DA2D216D7253003E779B /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				DB51A02E2174E2C600AB9624 /* main.swift */,
 				DB3802CA216D5F32004C2FF0 /* AppDelegate.swift */,
 				DB380301216D5F78004C2FF0 /* Application.swift */,
 				DB380303216D5F78004C2FF0 /* ButtonBarExampleViewController.swift */,
@@ -233,8 +252,11 @@
 		DB3802DE216D5F35004C2FF0 /* ConverterTests */ = {
 			isa = PBXGroup;
 			children = (
-				DB3802DF216D5F35004C2FF0 /* ConverterTests.swift */,
 				DB3802E1216D5F35004C2FF0 /* Info.plist */,
+				DB51A02B2174E15100AB9624 /* TestingAppDelegate.swift */,
+				DB51A02221745C7B00AB9624 /* RateViewModelSpec.swift */,
+				DB51A02421745E5A00AB9624 /* RateUseCaseMock.swift */,
+				DB51A02121745C7A00AB9624 /* ConverterTests-Bridging-Header.h */,
 			);
 			path = ConverterTests;
 			sourceTree = "<group>";
@@ -335,9 +357,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB3802F2216D5F35004C2FF0 /* Build configuration list for PBXNativeTarget "ConverterTests" */;
 			buildPhases = (
+				C9D2F7874790D9721676407E /* [CP] Check Pods Manifest.lock */,
 				DB3802D7216D5F35004C2FF0 /* Sources */,
 				DB3802D8216D5F35004C2FF0 /* Frameworks */,
 				DB3802D9216D5F35004C2FF0 /* Resources */,
+				1D0B73D24590D529595A4C1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -382,6 +406,7 @@
 					};
 					DB3802DA216D5F35004C2FF0 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 						TestTargetID = DB3802C6216D5F32004C2FF0;
 					};
 					DB3802E5216D5F35004C2FF0 = {
@@ -415,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB51A02A2174803600AB9624 /* Response.json in Resources */,
 				DB3802D5216D5F35004C2FF0 /* LaunchScreen.storyboard in Resources */,
 				DB3802D2216D5F35004C2FF0 /* Assets.xcassets in Resources */,
 			);
@@ -437,6 +463,46 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1D0B73D24590D529595A4C1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ConverterApp-ConverterTests/Pods-ConverterApp-ConverterTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ConverterApp-ConverterTests/Pods-ConverterApp-ConverterTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		78547065FE8F7DA73BE46C2C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -505,6 +571,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C9D2F7874790D9721676407E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ConverterApp-ConverterTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -534,6 +622,7 @@
 				DB380317216D5F79004C2FF0 /* ActivityIndicator.swift in Sources */,
 				DB380318216D5F79004C2FF0 /* Observable+Ex.swift in Sources */,
 				DB38030D216D5F79004C2FF0 /* RateCellViewModel.swift in Sources */,
+				DB51A02F2174E2C600AB9624 /* main.swift in Sources */,
 				DB10DA27216D6D96003E779B /* Rate.swift in Sources */,
 				DB380313216D5F79004C2FF0 /* ButtonBarExampleViewController.swift in Sources */,
 				DB380314216D5F79004C2FF0 /* ViewModelType.swift in Sources */,
@@ -546,7 +635,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB3802E0216D5F35004C2FF0 /* ConverterTests.swift in Sources */,
+				DB51A02D2174E1D000AB9624 /* TestingAppDelegate.swift in Sources */,
+				DB51A02321745C7B00AB9624 /* RateViewModelSpec.swift in Sources */,
+				DB51A02521745E5A00AB9624 /* RateUseCaseMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -743,9 +834,11 @@
 		};
 		DB3802F3216D5F35004C2FF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F3BD5D005432EEE967AE233 /* Pods-ConverterApp-ConverterTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KC7UXU4393;
 				INFOPLIST_FILE = ConverterTests/Info.plist;
@@ -756,6 +849,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DE.ConverterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ConverterTests/ConverterTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Converter.app/Converter";
@@ -764,9 +859,11 @@
 		};
 		DB3802F4216D5F35004C2FF0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B5CB0DA7D37CB3289F623FE /* Pods-ConverterApp-ConverterTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KC7UXU4393;
 				INFOPLIST_FILE = ConverterTests/Info.plist;
@@ -777,6 +874,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = DE.ConverterTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ConverterTests/ConverterTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Converter.app/Converter";

@@ -51,8 +51,8 @@ extension APIManager: TargetType {
 
     var sampleData: Data {
         switch self {
-        case let .getRates(base):
-            return Data.stubResponse((base ?? "EUR"))
+        case .getRates:
+            return Data.stubResponse("Response")
         }
     }
 
@@ -62,19 +62,12 @@ extension APIManager: TargetType {
 }
 
 extension Data {
-
-    /**
-     Loads the sample response file from the bundle.
-     **/
     static func stubResponse(_ filename: String) -> Data {
         @objc class TestClass: NSObject { }
-
         let bundle = Bundle(for: TestClass.self)
-
         guard let path = bundle.path(forResource: filename, ofType: "json") else {
             return Data()
         }
-
         do {
             return try Data(contentsOf: URL(fileURLWithPath: path))
         } catch {
