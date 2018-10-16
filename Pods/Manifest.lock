@@ -1,0 +1,96 @@
+PODS:
+  - Alamofire (4.7.3)
+  - Differentiator (3.1.0)
+  - FlagKit (2.0.1)
+  - Moya/Core (11.0.2):
+    - Alamofire (~> 4.1)
+    - Result (~> 3.0)
+  - Moya/RxSwift (11.0.2):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - Nimble (7.3.1)
+  - Quick (1.3.2)
+  - Realm (3.11.0):
+    - Realm/Headers (= 3.11.0)
+  - Realm/Headers (3.11.0)
+  - RealmSwift (3.11.0):
+    - Realm (= 3.11.0)
+  - Result (3.2.4)
+  - RxCocoa (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxRealm (0.7.5):
+    - RealmSwift (~> 3.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.3.1)
+  - RxTest (4.3.1):
+    - RxSwift (~> 4.0)
+  - SnapKit (4.0.1)
+  - XLPagerTabStrip (8.0.1)
+
+DEPENDENCIES:
+  - FlagKit (~> 2.0)
+  - Moya/RxSwift (~> 11.0)
+  - Nimble
+  - Quick
+  - RealmSwift (~> 3.8)
+  - RxCocoa (~> 4.0)
+  - RxDataSources
+  - RxRealm (~> 0.7.5)
+  - RxSwift (~> 4.0)
+  - RxTest (~> 4.0)
+  - SnapKit
+  - XLPagerTabStrip (from `https://github.com/xmartlabs/XLPagerTabStrip`, branch `master`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - Differentiator
+    - FlagKit
+    - Moya
+    - Nimble
+    - Quick
+    - Realm
+    - RealmSwift
+    - Result
+    - RxCocoa
+    - RxDataSources
+    - RxRealm
+    - RxSwift
+    - RxTest
+    - SnapKit
+
+EXTERNAL SOURCES:
+  XLPagerTabStrip:
+    :branch: master
+    :git: https://github.com/xmartlabs/XLPagerTabStrip
+
+CHECKOUT OPTIONS:
+  XLPagerTabStrip:
+    :commit: 73ffb21720c0e39d03c5a76b1d26b7ebdc69d6ee
+    :git: https://github.com/xmartlabs/XLPagerTabStrip
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  FlagKit: 75c64346179f254d1753bebdc5b1f9cbe7890748
+  Moya: a725035953bc1c0eb1be505ab903984501d82440
+  Nimble: 04f732da099ea4d153122aec8c2a88fd0c7219ae
+  Quick: 2623cb30d7a7f41ca62f684f679586558f483d46
+  Realm: 92f09a102692b96a9a10e9617f214f15c5ab85fc
+  RealmSwift: 5f0481cd658bb751c509314b964a35eaa264d2cf
+  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
+  RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
+  RxTest: ea97a208826906f3904c0debdd09575ebcbfe216
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+  XLPagerTabStrip: 347144ea331dee5566be29a110d25d281a6b32ec
+
+PODFILE CHECKSUM: ce3d6b57a1d5ed9c146989a96846a7877f8b2642
+
+COCOAPODS: 1.6.0.beta.1
