@@ -148,7 +148,10 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
                 tableView.register(RateTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! RateTableViewCell
                 cell.viewModel = viewModel
-                cell.amountField.rx.text.changed.bind(to: baseAmt).disposed(by: cell.disposeBag)
+                cell.amountField.rx.text
+                    .changed
+                    .bind(to: baseAmt)
+                    .disposed(by: cell.disposeBag)
                 return cell
             })
 

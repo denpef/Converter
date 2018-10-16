@@ -27,7 +27,11 @@ class RateViewModelSpec: QuickSpec {
             let unitTestsConfiguration = Realm.Configuration(inMemoryIdentifier: "UnitTestsConfiguration")
             Realm.Configuration.defaultConfiguration = unitTestsConfiguration
         }
+        
         beforeEach {
+            
+            self.clearRealm()
+            
             let endpointsClosure: MoyaProvider<APIManager>
                 .EndpointClosure = { (target: APIManager) -> Endpoint in
                     let sampleResponseClosure = { () -> EndpointSampleResponse in
@@ -144,7 +148,28 @@ class RateViewModelSpec: QuickSpec {
                 
                 context("user interactive with rates list") {
                     it("should call rates fetch after change amount") {
-                        sut.baseAmt.accept("2")
+                        let baseAmt = BehaviorRelay<String?>(value: "1")
+                        
+                        let input = self.createInput(pollingStart: Observable.just(()),
+                                                     selection: Observable.just(nil),
+                                                     baseAmt: baseAmt)
+                        let output = sut.transform(input: input)
+                        
+                        output.rates
+                            .drive()
+                            .disposed(by: disposeBag!)
+                        
+                        output.error
+                            .drive()
+                            .disposed(by: disposeBag!)
+                        
+                        output.pollingTumbler
+                            .drive()
+                            .disposed(by: disposeBag!)
+                        
+                        input.pollingStart.do()
+                        
+                        baseAmt.accept("2")
                         expect(rateUseCaseMock.ratesCalled).to(equal(true), description: "should reload call rates fetch")
                     }
                     
@@ -158,15 +183,17 @@ class RateViewModelSpec: QuickSpec {
     private func createInput(
         pollingStart: Observable<Void> = Observable.never(),
         pollingStop: Observable<Void> = Observable.never(),
-        selection: Observable<RateCellViewModel?> = Observable.just(nil))
+        selection: Observable<RateCellViewModel?> = Observable.just(nil),
+        baseAmt: BehaviorRelay<String?> = BehaviorRelay<String?>(value: "1"))
         -> RatesViewModel.Input {
             return RatesViewModel.Input(
                 pollingStart: pollingStart,
                 pollingStop: pollingStop,
-                selection: selection)
+                selection: selection,
+                baseAmt: baseAmt)
     }
     
-    private func resetRealm() {
+    private func clearRealm() {
         let realm = try! Realm()
         try! realm.write {
             realm.deleteAll()
