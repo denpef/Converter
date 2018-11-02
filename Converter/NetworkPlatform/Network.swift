@@ -42,6 +42,7 @@ final class Network {
             .observeOn(scheduler)
             .map(RatesWrapper.self, atKeyPath: nil, using: decoder, failsOnEmptyData: true)
             .flatMap({ wrapper -> Single<[Rate]> in
+                print("!!!!REQUEST!!!! \(Date())")
                 return Single.just(wrapper.rates)
             }).asObservable()
     }

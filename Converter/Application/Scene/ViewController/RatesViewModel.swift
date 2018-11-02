@@ -14,41 +14,47 @@ import RealmSwift
 final class RatesViewModel: ViewModelType {
 
     struct Input {
-        let pollingStart: Observable<Void>
-        let pollingStop: Observable<Void>
+//        let pollingStart: Observable<Void>
+//        let pollingStop: Observable<Void>
         let selection: Observable<RateCellViewModel?>
-        let baseAmt: BehaviorRelay<String?>
+        let scheduler: SchedulerType
+        //let baseAmt: BehaviorRelay<String?>
     }
 
     struct Output {
         let rates: Driver<[RatesItemSection]>
         let pollingTumbler: Driver<[Rate]>
+        let polling: PublishSubject<Bool>
         let error: Driver<Error>
     }
 
+    var baseAmt = BehaviorRelay<String?>(value: "1.00")
+    
     private let disposeBag = DisposeBag()
     private let useCase: RateUseCase
-    private var polling = PublishRelay<Bool>()
+    //private var polling = PublishSubject<Bool>()
 
     init(useCase: RateUseCase) {
         self.useCase = useCase
     }
 
     func transform(input: Input) -> Output {
-
+        
         let errorTracker = ErrorTracker()
         
-        input.pollingStart
-            .flatMapLatest {
-                Observable.just(true)
-            }.bind(to: polling).disposed(by: disposeBag)
+        let polling = PublishSubject<Bool>()
+//        input.pollingStart
+//            .flatMapLatest {
+//                Observable.just(true)
+//            }.bind(to: polling).disposed(by: disposeBag)
+//
+//        input.pollingStop
+//            .flatMapLatest {
+//                Observable.just(false)
+//            }.bind(to: polling).disposed(by: disposeBag)
 
-        input.pollingStop
-            .flatMapLatest {
-                Observable.just(false)
-            }.bind(to: polling).disposed(by: disposeBag)
-
-        let sheduler = ConcurrentDispatchQueueScheduler.init(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated))
+        //let scheduler = ConcurrentDispatchQueueScheduler.init(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated))
+        //let scheduler = input.scheduler
         
         // Combine base currency & timer for correct sync request
         let ratesViewModels = Observable
@@ -67,9 +73,10 @@ final class RatesViewModel: ViewModelType {
                 }
                 // Timer loop
                 return Observable<Int>
-                    .interval(1, scheduler: sheduler)
+                    //.interval(1, scheduler: self.scheduler)
+                    .interval(1, scheduler: input.scheduler)
                     .map { _ in baseCurrency }
-            }.flatMapLatest { baseId -> Observable<[Rate]> in
+            }.flatMapLatest { baseId -> Observable<[Rate]> in   
                 // Request data
                 return self.useCase
                     .rates(baseCurrency: baseId)
@@ -80,7 +87,7 @@ final class RatesViewModel: ViewModelType {
         let query = realm.objects(Rate.self)
 
         // Combine realm collection & base currency amount to calculate quotes
-        let items = Observable.combineLatest(Observable.collection(from: query), input.baseAmt.asObservable())
+        let items = Observable.combineLatest(Observable.collection(from: query), baseAmt.asObservable())
             .flatMapLatest {(arg) -> Observable<[RateCellViewModel]> in
                 let (results, amt) = arg
                 return Observable.just(
@@ -96,9 +103,20 @@ final class RatesViewModel: ViewModelType {
 
         let errors = errorTracker.asDriver()
 
+//        input.pollingStart
+//            .flatMapLatest {
+//                Observable.just(true)
+//            }.bind(to: polling).disposed(by: disposeBag)
+//
+//        input.pollingStop
+//            .flatMapLatest {
+//                Observable.just(false)
+//            }.bind(to: polling).disposed(by: disposeBag)
+
         return Output(
             rates: items,
             pollingTumbler: ratesViewModels,
+            polling: polling,
             error: errors)
     }
 }

@@ -17,7 +17,7 @@ class RateCellViewModel {
     
     private var disposeBag = DisposeBag()
     
-    var total: Variable<String?> = Variable<String?>(nil)
+    var total: BehaviorRelay<String?> = BehaviorRelay<String?>(value: nil)
     var rate: Rate
     let realm: Realm
     var isBase: Bool {
@@ -41,19 +41,19 @@ class RateCellViewModel {
         realm = try! Realm()
         
         if isBase {
-            self.total.value = baseAmt
+            self.total.accept(baseAmt)
             return
         }
         
         guard let amtStrong = baseAmt else {
-            self.total.value = "0.0"
+            self.total.accept("0.0")
             return
         }
         guard let baseNumber = Float(amtStrong.replacingOccurrences(of: ",", with: ".")) else {
-            self.total.value = "0.0"
+            self.total.accept("0.0")
             return
         }
-        self.total.value = String(format: "%.2f", baseNumber * self.rate.ratio)
+        self.total.accept(String(format: "%.2f", baseNumber * self.rate.ratio))
     }
     
 }

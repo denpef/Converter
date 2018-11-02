@@ -69,6 +69,9 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
 
         navigationController?.navigationBar.barStyle = .blackTranslucent
 
+        let cellReuseIdentifier = String(describing: RateTableViewCell.self)
+        tableView.register(RateTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+        
         tableView.snp.makeConstraints { maker in
             maker.edges.equalTo(self.view)
         }
@@ -78,16 +81,31 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
 
     private func configureTableView() {
 
-        tableView.rx
-            .setDelegate(self)
-            .disposed(by: disposeBag)
+        tableView.delegate = self
+//        tableView.rx
+//            .setDelegate(self)
+//            .disposed(by: disposeBag)
 
+    }
+    
+    @objc func didChange(notification: NSNotification) {
+        
+        guard let textField = notification.object as? UITextField else { return }
+        
+        var text = textField.text
+        if text == "" {
+            text = nil
+        }
+        
+        self.viewModel.baseAmt.accept(text)
     }
     
     private func bindViewModel() {
         
         assert(viewModel != nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(RatesViewController.didChange(notification:)), name: UITextField.textDidChangeNotification, object: nil)
+        
         tableView.rx.didScroll
             .subscribe(onNext: { [unowned self] in
                 self.view.endEditing(true)
@@ -110,11 +128,11 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
         let viewWillDisappear = rx.sentMessage(#selector(UIViewController.viewWillDisappear(_:)))
             .mapToVoid()
 
-        let WillResignActive = NotificationCenter.default.rx
+        let willResignActive = NotificationCenter.default.rx
             .notification(NSNotification.Name.NSExtensionHostWillResignActive)
             .mapToVoid()
 
-        let DidEnterBackground = NotificationCenter.default.rx
+        let didEnterBackground = NotificationCenter.default.rx
             .notification(NSNotification.Name.NSExtensionHostDidEnterBackground)
             .mapToVoid()
 
@@ -127,16 +145,30 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
 
         let selected = Observable<RateCellViewModel?>.merge(Observable.just(nil), modelSelected.asObservable())
 
-        let baseAmt = BehaviorRelay<String?>(value: "1")
+        //let baseAmt = BehaviorRelay<String?>(value: "1")
+        let scheduler = ConcurrentDispatchQueueScheduler.init(queue: DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated))
         
         let input = RatesViewModel.Input(
-            pollingStart: Observable.merge(viewWillAppear, noteBecomeActive, willEnterForeground),
-            pollingStop: Observable.merge(viewWillDisappear, WillResignActive, DidEnterBackground),
+//            pollingStart: Observable.merge(viewWillAppear, noteBecomeActive, willEnterForeground),
+//            pollingStop: Observable.merge(viewWillDisappear, WillResignActive, DidEnterBackground),
             selection: selected,
-            baseAmt: baseAmt)
+            scheduler: scheduler)//,
+            //baseAmt: baseAmt)
 
         let output = viewModel.transform(input: input)
 
+        Observable.merge(viewWillAppear, noteBecomeActive, willEnterForeground)
+            .flatMapLatest {
+                Observable.just(true)
+            }.bind(to: output.polling)
+            .disposed(by: disposeBag)
+        
+        Observable.merge(viewWillDisappear, willResignActive, didEnterBackground)
+            .flatMapLatest {
+                Observable.just(false)
+            }.bind(to: output.polling)
+            .disposed(by: disposeBag)
+        
         let dataSource = RxTableViewSectionedAnimatedDataSource<RatesItemSection>(
             animationConfiguration: AnimationConfiguration(
                 insertAnimation: .none,
@@ -145,13 +177,12 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
             ),
             configureCell: {(_, tableView, indexPath, viewModel) -> UITableViewCell in
                 let cellReuseIdentifier = String(describing: RateTableViewCell.self)
-                tableView.register(RateTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! RateTableViewCell
                 cell.viewModel = viewModel
-                cell.amountField.rx.text
-                    .changed
-                    .bind(to: baseAmt)
-                    .disposed(by: cell.disposeBag)
+//                cell.amountField.rx.text
+//                    .changed
+//                    .bind(to: baseAmt)
+//                    .disposed(by: cell.disposeBag)
                 return cell
             })
 
@@ -165,10 +196,13 @@ class RatesViewController: UIViewController, IndicatorInfoProvider {
             ).bind { [unowned self] indexPath, rateItemViewModel in
                     self.scrollToTop()
                     self.changeBaseCurrency(to: rateItemViewModel.rate.title)
-                    (self.tableView.cellForRow(at: indexPath) as? RateTableViewCell).map { cell in
-                        cell.amountField.isUserInteractionEnabled = true
-                        cell.amountField.becomeFirstResponder()
-                    }
+                    let cell = self.tableView.cellForRow(at: indexPath) as? RateTableViewCell
+                    cell?.amountField.isUserInteractionEnabled = true
+                    cell?.amountField.becomeFirstResponder()
+//                    (self.tableView.cellForRow(at: indexPath) as? RateTableViewCell).map { cell in
+//                        cell.amountField.isUserInteractionEnabled = true
+//                        cell.amountField.becomeFirstResponder()
+//                    }
             }.disposed(by: disposeBag)
 
         output.error

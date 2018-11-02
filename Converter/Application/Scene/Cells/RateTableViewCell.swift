@@ -48,7 +48,7 @@ final class RateTableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .equalCentering
-        stackView.contentMode = .center
+        //stackView.contentMode = .center
         
         stackView.addArrangedSubview(tickerLabel)
         stackView.addArrangedSubview(descriptionLabel)
@@ -59,7 +59,8 @@ final class RateTableViewCell: UITableViewCell {
     
     private lazy var flagImageView: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFill
+        //view.contentMode = .scaleAspectFill
+        view.contentMode = .scaleToFill
         
         return view
         

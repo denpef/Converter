@@ -16,6 +16,7 @@ class RateUseCaseMock: RateUseCase {
     
     func rates(baseCurrency: String) -> Observable<[Rate]> {
         ratesCalled = true
+        debugPrint("IT CALLED \(Date())")
         return ratesReturnValue
     }
     
